@@ -26,3 +26,5 @@ Route::get('/debug-sentry', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+// TES NGEPUSH KE REPOSITORY
