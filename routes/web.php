@@ -19,19 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('profile', function () {
-    $web = "Saya Adl; Fathi";
-    return view('profile', compact('web'));
+Route::get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
 });
 
-Route::get('about', function () {
-    return 'ini adalah halaman about';
-});
-
-//not working
-Route::get('halomet', 'TestingController@halomet') ;
-
-//not working
-Route::get('halaman/{page }', function ($page) {
-    return 'ini adalah halaman  '. $page;
-});
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
