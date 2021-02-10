@@ -1,16 +1,17 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
+use App\Actions\Fortify\PAsswordValidationRules;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash
 
 class UserController extends Controller
 {
+    use PasswordValidationRules
     //fungsilogin
     public function login (Request $request){
-
-    try{
+     try{
         //input
         $request->validate([
             'email' => 'email|required',
@@ -40,13 +41,46 @@ class UserController extends Controller
             'token_type'=>'Bearer',
             'user'=>$user
         ], 'Authenticated');
-    } catch(Exception $error){
-        return responseFormatter::$error([
+            } catch(Exception $error){
+            return responseFormatter::$error([
             'message' => 'keknya ada yang salah',
             'error' => $error
         ],'Authentication Failed',500);
 
-    }
+        }
 
     }
+
+    public function register (Request $request){
+        try {
+            $request->validate([
+                'name'=> ['required','string','max:255'],
+                'email'=> ['required','string','max:255','unique:users'],
+                'password'=>  $this->passwordRules()
+
+            ]);
+
+            User::create([
+                'name' => $request ->name,
+                'email' => $request ->email,
+                'password' =>Hash::make($request -> password) ,
+            ]);
+
+            $user =User::where('email',,$request->email)->first();
+            $tokenResult = $user->createToken('authToken')->plainTextToken;
+            return ResponseFormatter::success([
+                'access_token'=>$tokenResult,
+                'token_type'=>'barrer',
+                'user'=>$user,
+            ]);
+        } catch (Exception $error) {
+            returnResponseFormatter:error([
+                'message'=>'keknya ada yang salah'
+                'erorr' => $error
+            ],'Authentication Failed',500)
+            //throw $th;
+        }
+    }
+
+
 }
