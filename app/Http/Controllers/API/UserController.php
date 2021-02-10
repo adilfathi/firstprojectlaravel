@@ -66,7 +66,7 @@ class UserController extends Controller{
                 'password' =>Hash::make($request -> password) ,
             ]);
 
-            $user =User::where('email',,$request->email)->first();
+            $user =User::where('email',$request->email)->first();
             $tokenResult = $user->createToken('authToken')->plainTextToken;
             return ResponseFormatter::success([
                 'access_token'=>$tokenResult,
@@ -75,23 +75,29 @@ class UserController extends Controller{
             ]);
         } catch (Exception $error) {
             returnResponseFormatter:error([
-                'message'=>'keknya ada yang salah'
+                'message'=>'keknya ada yang salah',
                 'erorr' => $error
-            ],'Authentication Failed',500)
+            ],'Authentication Failed',500);
             //throw $th;
         }
     }
     //fungsilogin
      function logout(Request $request){
         $token = $request->user()->currentAccessToken()->delete();
-        return ResponseFormatter:succes($token,'Token Revoked');
+        return ResponseFormatter::succes($token,'Token Revoked');
     }
     //fungsiupdateProfile
     function updateProfile(Request $request){
-        $data = $request=>all();
+        $data = $request->all();
         $user = Auth::user();
-        $user=>update($data);
+        $user ->update($data);
         return ResponFormatter::success($user,'profile sudah di update');
+    }
+    //ngambil data
+    public function fetch(Request $request){
+        return ResponseFormatter::success(
+            $request->user(),'data telah berhasih di ambil'
+        );  
     }
 
 }
