@@ -4,15 +4,16 @@ namespace App\Http\Controllers\API;
 use App\Actions\Fortify\PAsswordValidationRules;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     
-    use PasswordValidationRules
+    use PasswordValidationRules;
 
     //fungsilogin
      function login (Request $request){
+
      try{
         //input
         $request->validate([
