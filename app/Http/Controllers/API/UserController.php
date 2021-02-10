@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    
     use PasswordValidationRules;
 
      function login (Request $request){
