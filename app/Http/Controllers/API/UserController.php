@@ -11,9 +11,7 @@ class UserController extends Controller
     
     use PasswordValidationRules;
 
-    //fungsilogin
      function login (Request $request){
-
      try{
         //input
         $request->validate([
@@ -89,6 +87,5 @@ class UserController extends Controller
         $token = $request->user()->currentAccessToken()->delete();
         return ResponseFormatter:succes($token,'Token Revoked');
     }
-
 
 }
