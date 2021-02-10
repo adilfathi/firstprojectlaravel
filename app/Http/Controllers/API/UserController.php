@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
-{
-    use PasswordValidationRules;
+class UserController extends Controller{
 
-     function login (Request $request){
+    use PasswordValidationRules;
+    //fungsi login
+    function login (Request $request) {
      try{
         //input
         $request->validate([
@@ -40,15 +40,15 @@ class UserController extends Controller
             'access_token' => $tokenResult,
             'token_type'=>'Bearer',
             'user'=>$user
-        ], 'Authenticated');
-            } catch(Exception $error){
+         ], 'Authenticated');
+            } 
+        catch(Exception $error){
             return responseFormatter::$error([
             'message' => 'keknya ada yang salah',
             'error' => $error
         ],'Authentication Failed',500);
 
         }
-
     }
     //fungsiresgister
      function register (Request $request){
@@ -86,5 +86,13 @@ class UserController extends Controller
         $token = $request->user()->currentAccessToken()->delete();
         return ResponseFormatter:succes($token,'Token Revoked');
     }
+    //fungsiupdateProfile
+    function updateProfile(Request $request){
+        $data = $request=>all();
+        $user = Auth::user();
+        $user=>update($data);
+        return ResponFormatter::success($user,'profile sudah di update');
+    }
 
 }
+
