@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Hash
 
 class UserController extends Controller
 {
+    
     use PasswordValidationRules
+
     //fungsilogin
-    public function login (Request $request){
+     function login (Request $request){
      try{
         //input
         $request->validate([
@@ -50,8 +52,8 @@ class UserController extends Controller
         }
 
     }
-
-    public function register (Request $request){
+    //fungsiresgister
+     function register (Request $request){
         try {
             $request->validate([
                 'name'=> ['required','string','max:255'],
@@ -80,6 +82,11 @@ class UserController extends Controller
             ],'Authentication Failed',500)
             //throw $th;
         }
+    }
+    //fungsilogin
+     function logout(Request $request){
+        $token = $request->user()->currentAccessToken()->delete();
+        return ResponseFormatter:succes($token,'Token Revoked');
     }
 
 
