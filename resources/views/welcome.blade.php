@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -129,4 +129,62 @@
             </div>
         </div>
     </body>
-</html>
+</html> --}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Selamat Datang!</title>
+    <link rel="apple-touch-icon" href="apple-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="{{ asset('style/assets/css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ asset('style/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('style/assets/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('style/assets/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('style/assets/css/flag-icon.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('style/assets/css/cs-skin-elastic.css') }}">
+    <link rel="stylesheet" href="{{ asset('style/assets/scss/style.css') }}">
+    {{-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'> --}}
+</head>
+<body class="bg-dark" style="padding: 20px">
+    <header class="default-header">
+        <div class="sticky-header">
+            <div class="container">
+                <div class="header-content d-flex justify-content-between align-items-center">
+                    <div class="logo">
+                        <a href="#top" class="smooth"><h1 class="brand brand-name text-white"> <i class="menu icon fa fa-users"></i> <i style="color:red">SIM</i>PEG</h1></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- End Header Area -->
+    <!-- Start Banner Area -->
+    <div class="container" style="margin-top: 250px;">
+        <div class="row fullscreen justify-content-center align-items-center">
+            <div class="col-lg-8">
+                <div class="banner-content text-center">
+                    <p class="text-uppercase text-white">We work hard, we result perfect</p>
+                    <h1 class="text-uppercase text-white">Sistem informasi <span style="color:red">kepegawaian</span></h1>
+                    <div class="mt-3">
+                        <a href="login" class="btn btn-outline-primary mr-3" style="border-radius: 30px; width: 120px;">Login</a>
+                        <a href="register" class="btn btn-outline-primary" style="border-radius: 30px; width: 120px;">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ asset('style/assets/js/vendor/jquery-2.1.4.min.js') }}"></script>
+    <script src="{{ asset('style/assets/js/main.js') }}"></script>
+</body>
+
+
+
+
+
+
+
