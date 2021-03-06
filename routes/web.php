@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,15 +26,14 @@ Route::get('/debug-sentry', function () {
 });
 
 //CRUD TABLE KARRYAWAN
-Route::get('/pegawai','PegawaiController@index');
-
-Route::post('/pegawai/store','PegawaiController@store');
-
-Route::get('/pegawai/edit/{id}','PegawaiController@edit');
-
-Route::post('/pegawai/update','PegawaiController@update');
-
-Route::get('/pegawai/hapus/{id}','PegawaiController@hapus');
+// Route::resource('/pegawai', App\Http\Controllers\PegawaiController::class);
+Route::get('/pegawai','App\Http\Controllers\PegawaiController@index')->name('pegawai');
+Route::get('/pegawai/create','App\Http\Controllers\PegawaiController@create');
+Route::get('/pegawai/{pegawai}','App\Http\Controllers\PegawaiController@show');
+Route::post('/pegawai','App\Http\Controllers\PegawaiController@store');
+ROute::delete('/pegawai/{pegawai}', 'App\Http\Controllers\PegawaiController@hapus');
+Route::get('/pegawai/{pegawai}/edit','App\Http\Controllers\PegawaiController@edit');
+Route::patch('/pegawai/{pegawai}','App\Http\Controllers\PegawaiController@update');
 
 //CRUD TABLE ADMIN
 Route::get('/admin','AdminController@index');
@@ -53,4 +53,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 // TES NGEPUSH KE REPOSITORY
 
-// NGETES PUSH 
+// NGETES PUSH
