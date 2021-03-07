@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKaryawansTable extends Migration
+class AddSoftDeleteToKaryawans extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class CreateKaryawansTable extends Migration
      */
     public function up()
     {
-        Schema::create('karyawans', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->integer('nip');
-            $table->string('alamat');
-            $table->bigInteger('notelp');
-            $table->timestamps();
+        Schema::table('karyawans', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +25,8 @@ class CreateKaryawansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('karyawans');
+        Schema::table('karyawans', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 }
