@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use \App\Models\Karyawan;
+use \App\Models\Divisi;
 
 class PegawaiController extends Controller{
 
@@ -13,18 +14,21 @@ class PegawaiController extends Controller{
         // $pegawai = DB::table('karyawans')->get();
 
         // mengambil data dari table pegawai pake Eloquent
-        $pegawai = Karyawan::all();
+        // $pegawai = Karyawan::all();
+        $pegawai = Karyawan::with('divisi')->latest()->paginate(10);
         // mengirim data pegawai ke view index
-        return view('pegawai/index', ['karyawans' => $pegawai]);
+        return view('pegawai/index', compact('pegawai'));
     }
 
     public function create() {
-        return view('pegawai.create');
+
+        $divisi = Divisi::all();
+        return view('pegawai.create', compact('divisi'));
     }
 
     // Detail Data Pegawai
     public function show(Karyawan $pegawai) {
-        return view('pegawai.show', ['karyawans' => $pegawai]);
+        return view('pegawai.show', compact('pegawai'));
     }
 
     public function store(Request  $request){
@@ -57,11 +61,11 @@ class PegawaiController extends Controller{
 
         Karyawan::create($request->all());
         // // alihkan halaman ke halaman pegawai
-        return redirect('/pegawai')->with('status', 'Data Berhasi Ditambahkan!');
+        return redirect('/pegawai')->with('status', 'Data Berhasil Ditambahkan!');
     }
 
     public function edit(Karyawan $pegawai){
-        return view('pegawai.edit', ['karyawans' => $pegawai]);
+        return view('pegawai.edit', compact('pegawai'));
     }
 
     public function update(Request $request, Karyawan $pegawai){
@@ -98,13 +102,13 @@ class PegawaiController extends Controller{
                     'notelp' => $request -> notelp
                 ]);
         // alihkan halaman ke halaman pegawai
-        return redirect('/pegawai')->with('status', 'Data Berhasi Diubah!');
+        return redirect('/pegawai')->with('status', 'Data Berhasil Diubah!');
     }
 
     public function hapus(Karyawan $pegawai){
         // DB::table('pegawai')->where('pegawai_id', $id)-> delete();
         // return redirect('/pegawai');
         Karyawan::destroy($pegawai -> id);
-        return redirect('/pegawai')->with('status', 'Data Berhasi Dihapus!');
+        return redirect('/pegawai')->with('status', 'Data Berhasil Dihapus!');
     }
 }

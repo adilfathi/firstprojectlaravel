@@ -4,33 +4,33 @@
 
 @section('container')
 <div class="max-w-3xl mx-auto mt-3 sm:px-6 lg:px-8">
-    <form method="post" action="/pegawai/{{ $karyawans -> id}}">
+    <form method="post" action="/pegawai/{{ $pegawai -> id}}">
         @method('patch')
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Nama</label>
-            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Masukkan Nama" value="{{ $karyawans -> name }}">
+            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Masukkan Nama" value="{{ $pegawai -> name }}">
             @error('name')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="mb-3">
             <label for="nip" class="form-label">NIP</label>
-            <input type="text" class="form-control @error('nip') is-invalid @enderror" id="nip" name="nip" placeholder="Masukkan NIP" value="{{ $karyawans -> nip }}">
+            <input type="text" class="form-control @error('nip') is-invalid @enderror" id="nip" name="nip" placeholder="Masukkan NIP" value="{{ $pegawai -> nip }}">
             @error('nip')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="mb-3">
             <label for="alamat" class="form-label">Alamat</label>
-            <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat" placeholder="Masukkan Alamat" value="{{ $karyawans -> alamat }}">
+            <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat" placeholder="Masukkan Alamat" value="{{ $pegawai -> alamat }}">
             @error('alamat')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="mb-3">
             <label for="notelp" class="form-label">No.Telepon</label>
-            <input type="text" class="form-control @error('notelp') is-invalid @enderror" id="notelp" name="notelp" placeholder="Masukkan No.Telepon" value="{{ $karyawans -> notelp }}">
+            <input type="text" class="form-control @error('notelp') is-invalid @enderror" id="notelp" name="notelp" placeholder="Masukkan No.Telepon" value="{{ $pegawai -> notelp }}">
             @error('notelp')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror

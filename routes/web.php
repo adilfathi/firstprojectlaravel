@@ -37,15 +37,19 @@ Route::patch('/pegawai/{pegawai}','App\Http\Controllers\PegawaiController@update
 
 //CRUD TABLE ADMIN
 Route::get('/admin','AdminController@index');
-
 Route::post('/admin/store','AdminController@store');
-
 Route::get('/admin/edit/{id}','AdminController@edit');
-
 Route::post('/admin/update','AdminController@update');
-
 Route::get('/admin/hapus/{id}','AdminController@hapus');
 
+//CRUD TABLE DIVISI
+Route::get('/divisi', 'App\Http\Controllers\DivisiController@index')->name('divisi');
+Route::get('/divisi/create', 'App\Http\Controllers\DivisiController@create');
+Route::get('/divisi/{divisi}','App\Http\Controllers\DivisiController@show');
+Route::post('/divisi', 'App\Http\Controllers\DivisiController@store');
+Route::delete('/divisi/{divisi}', 'App\Http\Controllers\DivisiController@destroy');
+Route::get('/divisi/{divisi}/edit', 'App\Http\Controllers\DivisiController@edit');
+Route::patch('/divisi/{divisi}', 'App\Http\Controllers\DivisiController@update');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

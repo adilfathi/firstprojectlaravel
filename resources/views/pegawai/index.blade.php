@@ -5,12 +5,12 @@
 
 @section('container')
 <div class="max-w-5xl mx-auto mt-10 sm:px-6 lg:px-8">
-    <a href="pegawai/create" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+    <a href="{{ ('pegawai/create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
         Tambah Data
     </a>
 </div>
 @if (session('status'))
-<div class="max-w-5xl mx-auto mt-10 sm:px-6 lg:px-8">
+<div class="max-w-5xl mx-auto mt-5 sm:px-6 lg:px-8">
     <div id="status" class="alert alert-success">
         {{ session('status') }}
     </div>
@@ -31,19 +31,16 @@
                     <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                     NIP
                     </th>
-                    {{-- <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Alamat
-                    </th>
                     <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        No.Telpon
-                    </th> --}}
+                    Divisi
+                    </th>
                     <th scope="col" class= "px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Aksi
                     </th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-            @foreach ($karyawans as $data)
+            @foreach ($pegawai as $data)
                     <tr>
                         <td class="px-4 py-4 text-center whitespace-nowrap">
                             <div class="text-sm font-medium text-gray-900">
@@ -60,16 +57,11 @@
                                 {{ $data -> nip }}
                             </div>
                         </td>
-                        {{-- <td class="px-6 py-4 text-center whitespace-nowrap">
-                            <div class="text-sm text-gray-900">
-                                {{ $data -> alamat }}
-                            </div>
-                        </td>
                         <td class="px-6 py-4 text-center whitespace-nowrap">
                             <div class="text-sm text-gray-900">
-                                {{ $data -> notelp }}
+                                {{ $data -> divisi -> nama_divisi }}
                             </div>
-                        </td> --}}
+                        </td>
                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                             <a href="/pegawai/{{ $data -> id}}" class="px-3 inline-flex text-s leading-5 font-semibold rounded-full bg-green-100 text-green-700 hover:text-green-500">
                                 Detail

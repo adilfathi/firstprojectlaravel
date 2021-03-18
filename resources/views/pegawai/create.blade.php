@@ -21,6 +21,18 @@
             @enderror
         </div>
         <div class="mb-3">
+            <label for="kode_divisi" class="form-label">Divisi / Bagian</label>
+            <select name="kode_divisi" class="form-control @error('alamat') is-invalid @enderror" required oninvalid="this.setCustomValidity('Harap Pilih Divisi!!')" oninput="this.setCustomValidity('')">
+                <option value="">--Pilih Divisi--</option>
+                @foreach ($divisi as $data)
+                    <option value="{{ $data->id }}">{{ $data->nama_divisi }}</option>
+                @endforeach
+            </select>
+            @error('kode_divisi')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
             <label for="alamat" class="form-label">Alamat</label>
             <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat" placeholder="Masukkan Alamat" value="{{ old('alamat') }}">
             @error('alamat')

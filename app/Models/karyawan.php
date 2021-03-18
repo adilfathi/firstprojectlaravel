@@ -14,9 +14,13 @@ class karyawan extends Model{
     'name',
     'nip',
     'alamat',
-    'notelp'
-
+    'notelp',
+    'kode_divisi'
     ];
+
+    public function divisi() {
+        return $this->belongsTo(Divisi::class, 'kode_divisi');
+    }
     // public function getCreatedAtAttribute($value)
     // {
     //     return Carbon::parse($value)->timestamp;
